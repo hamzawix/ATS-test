@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}
+Home
+{% endblock title %}
+
+{% block navbar %}
+    <li><a href="{{ url_for('list_products')}}">Products</a></li>
+    <li><a href="{{ url_for('statistics')}}">Statistics</a></li>
+{% endblock navbar %}
+{% block content %}
+
+<div class="jumbotron">
+        <div class="container">
+                <div><h1>Welcome to your stock!</h1></div>
+                <br>
+        </div>
+</div>
+
+{% endblock content %}

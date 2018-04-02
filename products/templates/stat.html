@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block links %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+{% endblock links %}
+
+
+{% block title %}
+Statistics
+{% endblock title %}
+
+{% block navbar %}
+    <li><a href="{{ url_for('list_products')}}">Products</a></li>
+    <li class="active"><a href="{{ url_for('statistics')}}">Statistics</a></li>
+{% endblock navbar %}
+
+{% block content %}
+<div class="container" style="padding-top:80px">
+    <h2>Total products: <strong>{{ n_prods }}</strong></h2>
+    <hr>
+    <ul>
+        <li>
+                <h4>Best product is <a href=" {{ url_for ('detail_product', id=best_product.product.id) }}">
+                        <strong>{{ best_product.product.product_name }}</strong>
+                    </a> 
+                        with total rating of <strong>{{ best_product['rating'] }}</strong></h4>
+        </li>
+
+        <li>
+                <h4>Worst product is <a href=" {{ url_for ('detail_product', id=worst_product.product.id) }}">
+                        <strong>{{ worst_product.product.product_name }}</strong>
+                    </a> 
+                        with total rating of <strong>{{ worst_product['rating'] }}</strong></h4>
+        </li>
+
+        <li>
+            <h3>Product classification chart based on total rating:</h3>
+            
+        </li>
+        <h5 id="chartdesc"></h5>
+        <br>
+    </ul>
+
+    <canvas id="myChart" width="750" height="250"></canvas>
+            
+</div>
+
+
+    
+
+
+<script src="{{ url_for('static', filename='js/data.js') }}"></script>
+{% endblock content %}

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}
+Detail
+{% endblock title %}
+
+{% block navbar %}
+    <li><a href="{{ url_for('list_products')}}">Products</a></li>
+    <li><a href="{{ url_for('statistics')}}">Statistics</a></li>
+{% endblock navbar %}
+
+{% block content %}
+    <div class="container" style="padding-top:80px">
+            <div class="panel panel-success">
+                    <div class="panel-body">
+                            <img src="{{ product.image_url }}" class="pull-left"
+                                style="width:200px;height:200px; margin-right:70px"
+                            >
+                            <h1><strong>{{ product.product_name }}</strong></h1>
+                            <ul>
+                                <li><strong>Brand: </strong>{{ product.brand }}</li>
+                                <li><strong>Price: </strong>{{ product.base_price }}</li>
+                                <li><strong>Material: </strong>{{ product.material }}</li>
+                                <li><strong>Category: </strong>{{ product.category }}</li>
+                                <li><strong>Delivery: </strong>{{ product.delivery }}</li>
+                            </ul>
+                     </div>
+            </div>
+            <br>
+            <hr>
+            <br>
+            <h2>Reviews</h2>
+            {% if product.reviews|length == 0 %}
+                <h4>No reviews yet</h4>
+            {% else %}
+            <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Content</th>
+                        <th>Rating</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for rev in product.reviews %}
+                            <tr>
+                                <td>{{ rev.content }}</td>
+                                <td>{{ rev.rating }}</td>
+                            </tr>
+                            
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+
+    </div>
+        
+    
+
+{% endblock content %}
